@@ -38,9 +38,9 @@ struct _zend_tombs_graveyard_t {
 };
 
 typedef struct _zend_tomb_state_t {
-    zend_bool inserted;
-    zend_bool populated;
-    zend_bool deleted;
+    bool inserted;
+    bool populated;
+    bool deleted;
 } zend_tomb_state_t;
 
 struct _zend_tomb_t {

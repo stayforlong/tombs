@@ -227,7 +227,7 @@ zend_tombs_io_type_t zend_tombs_io_setup(char *uri, struct sockaddr **sa, int *s
     return type;
 }
 
-zend_bool zend_tombs_io_startup(char *uri, zend_tombs_graveyard_t *graveyard)
+bool zend_tombs_io_startup(char *uri, zend_tombs_graveyard_t *graveyard)
 {
     if (!uri) {
         return 1;
@@ -267,7 +267,7 @@ zend_bool zend_tombs_io_startup(char *uri, zend_tombs_graveyard_t *graveyard)
     return 1;
 }
 
-zend_bool zend_tombs_io_write(int fd, char *message, size_t length) {
+bool zend_tombs_io_write(int fd, char *message, size_t length) {
     ssize_t total = 0,
             bytes = 0;
 
@@ -288,11 +288,11 @@ zend_bool zend_tombs_io_write(int fd, char *message, size_t length) {
     return 1;
 }
 
-zend_bool zend_tombs_io_write_string(int fd, zend_tombs_string_t *string) {
+bool zend_tombs_io_write_string(int fd, zend_tombs_string_t *string) {
     return zend_tombs_io_write(fd, string->value, string->length);
 }
 
-zend_bool zend_tombs_io_write_int(int fd, zend_long num) {
+bool zend_tombs_io_write_int(int fd, zend_long num) {
     char intbuf[128];
 
     sprintf(

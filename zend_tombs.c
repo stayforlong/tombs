@@ -189,7 +189,7 @@ static void zend_tombs_activate(void) {
 }
 
 static void zend_tombs_setup(zend_op_array *ops) {
-    zend_bool **slot,
+    bool **slot,
                *nil = NULL,
               **marker = NULL;
 
@@ -211,7 +211,7 @@ static void zend_tombs_setup(zend_op_array *ops) {
     }
 
     slot =
-        (zend_bool**)
+        (bool**)
             &ops->reserved[zend_tombs_resource];
 
     marker = zend_tombs_markers_create(zend_tombs_markers);
@@ -225,7 +225,7 @@ static void zend_tombs_setup(zend_op_array *ops) {
         zend_tombs_graveyard_populate(
             zend_tombs_graveyard,
             zend_tombs_markers_index(
-                zend_tombs_markers, (zend_bool*)marker),
+                zend_tombs_markers, (bool*)marker),
             ops);
     }
 
@@ -234,7 +234,7 @@ static void zend_tombs_setup(zend_op_array *ops) {
 
 static void zend_tombs_execute(zend_execute_data *execute_data) {
     zend_op_array *ops = (zend_op_array*) EX(func);
-    zend_bool *marker   = NULL,
+    bool *marker   = NULL,
               _unmarked = 0,
               _marked   = 1;
 

@@ -29,7 +29,7 @@
 #include "zend_tombs_markers.h"
 
 static zend_always_inline zend_long zend_tombs_markers_size(zend_long slots) {
-    return sizeof(zend_tombs_markers_t) + (sizeof(zend_bool*) * slots);
+    return sizeof(zend_tombs_markers_t) + (sizeof(bool*) * slots);
 }
 
 zend_tombs_markers_t* zend_tombs_markers_startup(zend_long slots) {
@@ -46,7 +46,7 @@ zend_tombs_markers_t* zend_tombs_markers_startup(zend_long slots) {
 
     memset(markers, 0, size);
 
-    markers->markers = (zend_bool*) 
+    markers->markers = (bool*)
                         (((char*) markers) + sizeof(zend_tombs_markers_t));
     markers->slots   = slots;
     markers->used    = 0;
@@ -54,7 +54,7 @@ zend_tombs_markers_t* zend_tombs_markers_startup(zend_long slots) {
     return markers;
 }
 
-zend_bool** zend_tombs_markers_create(zend_tombs_markers_t *markers) {
+bool** zend_tombs_markers_create(zend_tombs_markers_t *markers) {
     zend_long slot = 
         __atomic_fetch_add(
             &markers->used, 1, __ATOMIC_SEQ_CST);
@@ -63,7 +63,7 @@ zend_bool** zend_tombs_markers_create(zend_tombs_markers_t *markers) {
         return NULL;
     }
 
-    return (zend_bool**) markers->markers + slot;
+    return (bool**) markers->markers + slot;
 }
 
 void zend_tombs_markers_shutdown(zend_tombs_markers_t *markers) {

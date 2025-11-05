@@ -21,12 +21,12 @@
 
 #include "zend_tombs_strings.h"
 
-zend_bool zend_tombs_io_startup(char *uri, zend_tombs_graveyard_t *graveyard);
+bool zend_tombs_io_startup(char *uri, zend_tombs_graveyard_t *graveyard);
 void zend_tombs_io_shutdown(void);
 
-zend_bool zend_tombs_io_write(int fd, char *message, size_t length);
-zend_bool zend_tombs_io_write_string(int fd, zend_tombs_string_t *string);
-zend_bool zend_tombs_io_write_int(int fd, zend_long num);
+bool zend_tombs_io_write(int fd, char *message, size_t length);
+bool zend_tombs_io_write_string(int fd, zend_tombs_string_t *string);
+bool zend_tombs_io_write_int(int fd, zend_long num);
 
 #define zend_tombs_io_write_ex(s, v, l, a) if (!zend_tombs_io_write(s, v, l)) a
 #define zend_tombs_io_write_string_ex(s, v, a) if (!zend_tombs_io_write_string(s, v)) a
