@@ -115,7 +115,7 @@ _zend_tombs_strings_check:
     return copy;
 }
 
-zend_bool zend_tombs_strings_startup(zend_long strings) {
+bool zend_tombs_strings_startup(zend_long strings) {
     size_t zend_tombs_strings_size = floor((strings / 5) * 1),
            zend_tombs_strings_buffer_size = floor((strings / 5) * 4);
 

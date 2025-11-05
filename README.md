@@ -83,7 +83,7 @@ For more compact output use tombs.graveyard_format=`function`:
 
 On startup (MINIT) Tombs maps three regions of memory:
 
-  - Markers   - a pointer to zend_bool in the reserved region of every op array
+  - Markers   - a pointer to bool in the reserved region of every op array
   - Strings   - region of memory for copying persistent strings: file names, class names, and function names
   - Graveyard - a tomb for each possible function
 
@@ -93,7 +93,7 @@ Should mapping fail, because there isn't enough memory for example, Tombs will n
 
 ### Markers
 
-The op array constructor hook for zend extensions is used to set reserved memory to a mapped pointer to zend_bool. If the atomic set succeeds, the hook then populates a tomb in the graveyard.
+The op array constructor hook for zend extensions is used to set reserved memory to a mapped pointer to bool. If the atomic set succeeds, the hook then populates a tomb in the graveyard.
 
 ### Strings
 
